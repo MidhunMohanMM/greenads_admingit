@@ -1,0 +1,19 @@
+.sideNavLink {
+    background-color: #2f4050;
+}
+.page-wrapper{
+    background-color: #2f4050;
+}
+#usersBtn{
+    float: right;
+    text-transform: uppercase;
+}
+#okBtn{
+    margin-left: 10px;
+}
+.modal-header{
+    color: white;
+    text-align: center;
+    line-height: 1.42857143;
+    background-color: #367fa9;
+}

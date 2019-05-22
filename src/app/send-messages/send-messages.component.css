@@ -1,0 +1,13 @@
+.sideNavLink {
+    background-color: #2f4050;
+}
+.page-wrapper{
+    background-color: #2f4050;
+}
+#message{
+    width: 100%;
+}
+#maxlimit{
+    color:red;
+}
+/* @import 'https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'; */

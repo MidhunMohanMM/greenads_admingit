@@ -1,0 +1,9 @@
+.invalid-feedback {
+    /* display: none; */
+    margin-top: .25rem;
+    font-size: 1.3rem;
+    color: #dc3545;
+  }
+  #gray-bg {
+    background-color: #d7e2cb !important;
+  }

@@ -1,0 +1,22 @@
+.sideNavLink {
+    background-color: #2f4050;
+}
+.page-wrapper{
+    background-color: #2f4050;
+}
+.form-inline{
+    padding: 5px;
+}
+#addBtn{
+    float: right;
+    margin-right: 7px;
+}
+#okBtn{
+    margin-left: 10px;
+}
+.modal-header{
+    color: white;
+    text-align: center;
+    line-height: 1.42857143;
+    background-color: #367fa9;
+}

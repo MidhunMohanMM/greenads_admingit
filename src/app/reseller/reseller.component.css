@@ -1,0 +1,50 @@
+.sideNavLink {
+    background-color: #2f4050;
+}
+.page-wrapper{
+    background-color: #2f4050;
+}
+.button {
+    background-color: #26b99a; /* Green */
+    border: none;
+    color: white;
+    padding: 13px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+   
+  }
+  
+  .button1 {
+      font-size: 12px;
+      float: right;
+      border-radius: 5px;
+    }
+
+    #CONFIGModalLabel{
+        text-align: center;
+    }
+    #modalInput{
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 3px solid #ccc;
+        -webkit-transition: 0.5s;
+        transition: 0.5s;
+        outline: none;
+    }
+    #modalInput:focus {
+        border: 3px solid #ccc;
+    }
+    #option_select{
+        color: gray;
+    }
+    .modal-header{
+        color: white;
+        text-align: center;
+        line-height: 1.42857143;
+        background-color: #367fa9;
+    }
