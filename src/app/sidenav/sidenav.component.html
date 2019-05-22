@@ -1,5 +1,5 @@
 
-<body class="pace-done">
+<body class="pace-done ">
 <nav class="navbar-default navbar-static-side" role="navigation">
   <div class="sidebar-collapse">
       <ul class="nav metismenu" id="side-menu">
@@ -20,30 +20,30 @@
               <div class="logo-element">
               </div>
           </li>
-          <li class="active">
+          <li id="dashboard">
               <a class="sideNavLink" (click)="dashboard();"><i class="fa fa-th-large"></i> <span class="nav-label">DASHBOARD</span></a>
           </li>
   
-          <li id="opendropdown">
+          <li id="opendropdown"  >
               <a class="sideNavLink" ><i class="fa fa-cogs"></i> <span class="nav-label">CONNECTIONS</span><span class="fa arrow"></span></a>
               <ul class="nav nav-second-level collapse" id="opendropdownUl">
-                  <li> <a (click)="gateways();">GATEWAYS</a></li>
-                  <li> <a (click)="routings();">USER ROUTERS</a></li>
-                  <li><a (click)="gatewayconfig();">DEFAULT ROUTERS</a></li>
+                  <li id="gateways"> <a (click)="gateways();">GATEWAYS</a></li>
+                  <li id="userrouters"> <a (click)="routings();">USER ROUTERS</a></li>
+                  <li id="gateconfig"><a (click)="gatewayconfig();">DEFAULT ROUTERS</a></li>
               </ul>
           </li>
-          <li id="opendropdown"  >
+          <li id="opendropdownsenderID"  >
               <a class="sideNavLink"  (click)="senderid();"><i class="fa fa-edit"></i> <span class="nav-label">SENDER-ID</span></a>
           </li>
           <li  id="opendropdownUser">
               <a class="sideNavLink" ><i class="fa fa-users"></i> <span class="nav-label">USERS</span><span class="fa arrow"></span></a>
               <ul class="nav nav-second-level collapse" id="opendropdownUlUser">
-                  <li><a (click)="userbydate();">USERS BY DATES</a></li>
-                  <li><a (click)="users();">USERS</a></li>
-                  <li><a (click)="usergateways();">USER GATEWAYS</a></li>
-                  <li><a (click)="changeusersgateways();">CHANGE USERS GATEWAYS</a></li>
-                  <li><a (click)="lowusers();">LOW USERS</a></li>
-                  <li><a (click)="reseller();">RESELLER</a></li>
+                  <li id="userbydate"><a (click)="userbydate()">USERS BY DATES</a></li>
+                  <li id="users"><a (click)="users()">USERS</a></li>
+                  <li id="usergateways"><a (click)="usergateways()">USER GATEWAYS</a></li>
+                  <li id="changeusergateways"><a (click)="changeusersgateways()">CHANGE USERS GATEWAYS</a></li>
+                  <li id="lowusers"><a (click)="lowusers()">LOW USERS</a></li>
+                  <li id="reseller"><a (click)="reseller()">RESELLER</a></li>
 
          
               </ul>
@@ -51,43 +51,43 @@
           <li id="opendropdownPayment">
               <a class="sideNavLink" ><i class="fa fa-rupee"></i> <span class="nav-label">PAYMENTS</span><span class="fa arrow"></span></a>
               <ul class="nav nav-second-level collapse" id="opendropdownUlPayment">
-                  <li><a (click)="payment();">PAYMENT</a></li>
-                  <li><a (click)="totalpayment();">TOTAL PAYMENT</a></li>
+                  <li id="payment"><a (click)="payment()">PAYMENT</a></li>
+                  <li id="totalpayment"><a (click)="totalpayment()">TOTAL PAYMENT</a></li>
               </ul>
           </li>
   
           <li id="opendropdownReport">
           <a class="sideNavLink" ><i class="fa fa-table"></i> <span class="nav-label">REPORTS</span><span class="fa arrow"></span></a>
               <ul class="nav nav-second-level collapse" id="opendropdownUlReport">
-                  <li><a (click)="reportbyuser();">REPORTS BY USER</a></li>
-                  <li><a (click)="reportsbydate();">REPORTS BY DATE</a></li>
-                  <li><a (click)="reportsbyroutes();">REPORTS BY ROUTE</a></li>
+                  <li id="reportbyuser"><a (click)="reportbyuser();">REPORTS BY USER</a></li>
+                  <li id="reportbydate"><a (click)="reportsbydate();">REPORTS BY DATE</a></li>
+                  <li id="reportbyroute"><a (click)="reportsbyroutes();">REPORTS BY ROUTE</a></li>
               </ul>
           </li>
-          <li >
+          <li id="templates">
               <a (click)="template();" class="sideNavLink" ><i class="fa fa-file-text-o"></i> <span class="nav-label">TEMPLATES</span></a>
           </li>
-          <li>
+          <li id="blocknumbers">
               <a class="sideNavLink" (click)="blocknumbers();"><i class="fa fa-edit"></i> <span class="nav-label">BLOCK NUMBERS</span></a>
           </li>
           <li id="opendropdownLog">
           <a class="sideNavLink" ><i class="fa fa-laptop"></i> <span class="nav-label">LOG DETAILS</span><span class="fa arrow"></span></a>
               <ul class="nav nav-second-level collapse" id="opendropdownUlLog">
-                  <li><a (click)="smppLog();">SMPP LOG</a></li>
-                  <li><a (click)="smsque();">SMS QUEUE</a></li>
-                  <li><a (click)="routegateway();">ROUTE GATEWAY QUEUE</a></li>
+                  <li id="smpplog"><a (click)="smppLog();">SMPP LOG</a></li>
+                  <li id="smsque"><a (click)="smsque();">SMS QUEUE</a></li>
+                  <li id="routegateway"><a (click)="routegateway();">ROUTE GATEWAY QUEUE</a></li>
               </ul>
           </li>
-          <li>
+          <li id="notification">
               <a class="sideNavLink" (click)="notification();" ><i class="fa fa-bell"></i> <span class="nav-label">NOTIFICATION</span></a>
           </li>
-          <li>
+          <li id="sendmessages">
               <a class="sideNavLink" (click)="sendmessages();"><i class="fa fa-commenting-o"></i> <span class="nav-label">SEND MESSAGES</span></a>
           </li>
-          <li>
+          <li id="userchangepassword">
               <a class="sideNavLink" (click)="userchangepassword();"><i class="fa fa-unlock-alt"></i> <span class="nav-label">USER CHANGE PASSWORD</span></a>
           </li>
-          <li>
+          <li id="userfilehits">
               <a class="sideNavLink" (click)="userfilelink();"><i class="fa fa-magic"></i> <span class="nav-label">USER FILE HITS</span></a>
           </li>
       </ul>

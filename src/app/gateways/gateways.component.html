@@ -49,22 +49,50 @@
                                                   <div class="modal-body">
                                                       <form  name="gateConfigForm" >
                                                           <div class="form-group">         
-                                                            <input type="text" class="form-control" [(ngModel)]='ipAddress' name="ipAddress"   placeholder="Enter Gateway Name">
+                                                            <input type="text" class="form-control" [(ngModel)]='gatewayname' name="gatewayname"   placeholder="Enter Gateway Name">
+                                                          </div>
+                                                          
+                                                          <div class="form-group">       
+                                                            <select class="form-control" placeholder="Select Route" [(ngModel)]="bindMode"  name="bindMode" id="exampleFormControlSelect1">
+                                                                <option id="option_select" value="" selected disabled>Select Route</option>
+                
+                                                                <option *ngFor="let routestype of routestypes" 
+                                                                [value]="routestype.gatewaystypesid">
+                                                              {{routestype.name | titlecase }}
+                                                            </option>   
+            
+                                                            </select>
+                                                        </div>
+                                                          <div class="form-group">         
+                                                            <input type="text" class="form-control" [(ngModel)]='host' name="host"   placeholder="Enter Host">
+                                                          </div>
+
+                                                          <div class="form-group">       
+                                                            <input type="text" class="form-control" [(ngModel)]='port' name="port" placeholder="Enter Port">
+                                                          </div>
+                                                          <div class="form-group">       
+                                                            <input type="text" class="form-control" [(ngModel)]='username' name="username" placeholder="Enter Username">
+                                                          </div>
+                                                          <div class="form-group">       
+                                                            <input type="text" class="form-control" [(ngModel)]='password' name="password" placeholder="Enter Password">
+                                                          </div>
+                                                          <div class="form-group">       
+                                                            <input type="text" class="form-control" [(ngModel)]='passwordconfirm' name="passwordconfirm" placeholder="Re-Enter your password">
+                                                          </div>
+                                                          <!-- <div class="form-group">       
+                                                            <input type="text" class="form-control" [(ngModel)]='port' name="port" placeholder="Enter Gateway Description">
                                                           </div>
                                                           <div class="form-group">       
                                                             <input type="text" class="form-control" [(ngModel)]='port' name="port" placeholder="Enter Gateway Description">
                                                           </div>
+                                                          <div class="form-group">       
+                                                            <input type="text" class="form-control" [(ngModel)]='port' name="port" placeholder="Enter Gateway Description">
+                                                          </div>
+                                                          <div class="form-group">       
+                                                            <input type="text" class="form-control" [(ngModel)]='port' name="port" placeholder="Enter Gateway Description">
+                                                          </div> -->
                
-                                                          <div class="form-group">       
-                                                                <select class="form-control" placeholder="Select Route" [(ngModel)]="bindMode"  name="bindMode" id="exampleFormControlSelect1">
-                                                                    <option id="option_select" value="" selected disabled>Select Route</option>
-                                                                    <option>Promotional</option>
-                                                                    <option>Transactional</option>
-                                                                    <option>Promo with SID</option>
-                
-                                                                </select>
-                                                            </div>
-                                                          <div class="form-group">       
+                                                          <!-- <div class="form-group">       
                                                               <p>GSM CHARCTER REPLACE...?</p>
                                                               <label class="radio-inline">
                                                                     <input type="radio" name="optradio" checked>Yes
@@ -72,7 +100,7 @@
                                                                   <label class="radio-inline">
                                                                     <input type="radio" name="optradio">No
                                                                 </label>
-                                                          </div>
+                                                          </div> -->
                             
                                                      </form>
                                                   </div>

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User, Role } from '../_models';
 import { AuthService } from '../services/auths/auth.service';
+import { ActivatedRoute } from "@angular/router";
+declare var $:any;
+
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
@@ -11,11 +14,9 @@ export class SidenavComponent implements OnInit {
   currentUser: User;
   userType: any;
   userData: any;
+  mini: any;
   user: any; str: any;
-  constructor(
-    private router: Router,
-    private auth: AuthService
-  ) {
+  constructor(private route : ActivatedRoute, private router: Router,private auth: AuthService) {
     this.auth.currentUser.subscribe(x => this.currentUser = x);
     this.userType = localStorage.getItem('type');
   }
@@ -29,6 +30,13 @@ get isRADM() {
   return this.currentUser && this.currentUser.role === Role.RADM;
 }
   ngOnInit() {
+
+    this.mini = localStorage.getItem('mini');
+    console.log(this.mini);
+    if(this.mini == true){
+      $(".pace-done").addClass('mini-navbar');
+    }
+
     this.userData = JSON.parse(localStorage.getItem('userdata'));
     console.log(this.userData);
     this.user = this.userData.users_permission.name;
@@ -72,6 +80,106 @@ get isRADM() {
       $("#opendropdownLog").toggleClass("active");
       $("#opendropdownUlLog").toggleClass("in");
     });
+
+    console.log(this.route);
+
+    if(this.route.routeConfig.path == 'dashboard/:id'){
+      $( "#dashboard" ).addClass( 'active' );
+
+    }
+    else if(this.route.routeConfig.path == 'gateways'){
+       $("#opendropdown").addClass('active');
+      $("#gateways").addClass('active');
+    }
+    else if(this.route.routeConfig.path == 'routings'){
+      $("#opendropdown").addClass('active');
+      $("#userrouters").addClass('active');
+    }
+    else if(this.route.routeConfig.path == 'gatewayconfig'){
+      $("#opendropdown").addClass('active');
+      $("#gateconfig").addClass('active');
+    }
+    else if(this.route.routeConfig.path == 'senderid'){
+      $("#opendropdownsenderID").addClass('active');
+    }
+    else if(this.route.routeConfig.path == 'userbydate'){
+      $("#opendropdownUser").addClass('active');
+      $("#userbydate").addClass('active');
+    }
+    else if(this.route.routeConfig.path == 'users'){
+      $("#opendropdownUser").addClass('active');
+      $("#users").addClass('active');
+    }
+    else if(this.route.routeConfig.path == 'usergateways'){
+      $("#opendropdownUser").addClass('active');
+      $("#usergateways").addClass('active');
+    }
+    else if(this.route.routeConfig.path == 'changeusersgateways'){
+      $("#opendropdownUser").addClass('active');
+      $("#changeusergateways").addClass('active');
+    }
+    else if(this.route.routeConfig.path == 'lowusers'){
+      $("#opendropdownUser").addClass('active');
+      $("#lowusers").addClass('active');
+    }
+    else if(this.route.routeConfig.path == 'reseller'){
+      $("#opendropdownUser").addClass('active');
+      $("#reseller").addClass('active');
+    }
+    else if(this.route.routeConfig.path == 'payment'){
+      $("#opendropdownPayment").addClass('active');
+      $("#payment").addClass('active');
+    }
+    else if(this.route.routeConfig.path == 'totalpayment'){
+      $("#opendropdownPayment").addClass('active');
+      $("#totalpayment").addClass('active');
+    }
+    else if(this.route.routeConfig.path == 'reportbyuser'){
+      $("#opendropdownReport").addClass('active');
+      $("#reportbyuser").addClass('active');
+    }
+    else if(this.route.routeConfig.path == 'reportsbydate'){
+      $("#opendropdownReport").addClass('active');
+      $("#reportbydate").addClass('active');
+    }
+    else if(this.route.routeConfig.path == 'reportsbyroutes'){
+      $("#opendropdownReport").addClass('active');
+      $("#reportbyroute").addClass('active');
+    }
+    else if(this.route.routeConfig.path == 'template'){
+      $("#templates").addClass('active');
+    }
+    else if(this.route.routeConfig.path == 'blocknumbers'){
+      $("#blocknumbers").addClass('active');
+    }
+    else if(this.route.routeConfig.path == 'smpplog'){
+      $("#opendropdownLog").addClass('active');
+      $("#smpplog").addClass('active');
+    }
+    else if(this.route.routeConfig.path == 'smsque'){
+      $("#opendropdownLog").addClass('active');
+      $("#smsque").addClass('active');
+    }
+    else if(this.route.routeConfig.path == 'routegateway'){
+      $("#opendropdownLog").addClass('active');
+      $("#routegateway").addClass('active');
+    }
+    else if(this.route.routeConfig.path == 'notification'){
+      $("#notification").addClass('active');
+    }
+    else if(this.route.routeConfig.path == 'sendmessages'){
+      $("#sendmessages").addClass('active');
+    }
+    else if(this.route.routeConfig.path == 'userchangepassword'){
+      $("#userchangepassword").addClass('active');
+    }
+    else if(this.route.routeConfig.path == 'userfilelink'){
+      $("#userfilehits").addClass('active');
+    }
+
+
+
+
     
   }
 

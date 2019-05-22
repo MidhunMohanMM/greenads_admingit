@@ -24,6 +24,14 @@ export class GatewaysComponent implements OnInit {
 title = 'angulardatatables';
 dtOptions: DataTables.Settings = {};
 gatewayprofiles: any = [""];
+
+gatewayname: any = "";
+host: any = "";
+username: any = "";
+password: any = "";
+passwordconfirm: any = "";
+  routestypes: any;
+
   constructor() {
 
    
@@ -38,7 +46,7 @@ gatewayprofiles: any = [""];
     }
 
     this.getgatewayprofile();
-
+    this.getroutesType();
 
 
   }
@@ -46,6 +54,19 @@ gatewayprofiles: any = [""];
   addGetwayConfigs(){
 
   }
+
+  getroutesType(){
+    var self = this;
+    axios.get('http://103.214.233.141:3003/v1/secure/gateways/types')
+        .then(function (res) {
+          
+          self.routestypes = res.data;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+  }
+
 
   getgatewayprofile(){
     var self = this;

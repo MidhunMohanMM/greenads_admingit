@@ -40,22 +40,62 @@
                                           <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                               <div class="modal-header">
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <button type="button" class="close" id="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                     </button>
-                                                <h5 class="modal-title" id="CONFIGModalLabel">ADD  ROUTE</h5>
+                                                <h5 class="modal-title" id="CONFIGModalLabel">ADD USER ROUTERS</h5>
                                                 
                                               </div>
                                               <div class="modal-body">
                                                   <form  name="gateConfigForm" >
-                                                      <div class="form-group">         
+
+                                                        <div class="form-group">       
+                                                                <select class="form-control" placeholder="Select Route" [(ngModel)]="selecteduser"  name="selectedroute" id="exampleFormControlSelect1">
+                                                                    <option id="option_select" value="" selected disabled>Select User</option>
+                    
+                                                                    <option *ngFor="let user of users" 
+                                                                    [value]="user.usersid">
+                                                                  {{user.name | titlecase }}
+                                                                </option>   
+                
+                                                                </select>
+                                                            </div>
+
+                                                        <div class="form-group">       
+                                                                <select class="form-control" placeholder="Select Route" [(ngModel)]="selectedroute"  name="selectedroute" id="exampleFormControlSelect1">
+                                                                    <option id="option_select" value="" selected disabled>Select Route</option>
+                    
+                                                                    <option *ngFor="let routestype of routestypes" 
+                                                                    [value]="routestype.gatewaystypesid">
+                                                                  {{routestype.name | titlecase }}
+                                                                </option>   
+                
+                                                                </select>
+                                                            </div>
+
+                                                            <div class="form-group">       
+                                                                    <select class="form-control" placeholder="Select Gateway" [(ngModel)]="selectedgateway"  name="selectedgateway" id="exampleFormControlSelect1">
+                                                                        <option id="option_select" value="" selected disabled>Select Gateway</option>
+                        
+                                                                        <option *ngFor="let gateway of gateways" 
+                                                                        [value]="gateway.gatewaysid">
+                                                                      {{gateway.name | titlecase }}
+                                                                    </option>   
+                    
+                                                                    </select>
+                                                                </div>
+
+
+
+
+                                                      <!-- <div class="form-group">         
                                                         <input type="number" class="form-control" [(ngModel)]='ipAddress'  name="ipAddress"  placeholder="Enter Prefix">
                                                       </div>
                                                       <div class="form-group">       
                                                         <input type="number" class="form-control" [(ngModel)]='port' name="port" placeholder="Enter Number Of Credits">
                                                       </div>
-           
-                                                      <div class="form-group">       
+            -->
+                                                      <!-- <div class="form-group">       
                                                           <select class="w3-select form-control" id="exampleFormControlSelect1" [(ngModel)]='gatewayname' name="gatewayname" placeholder="Enter Gateway Name">
                                                               <option id="option_select" value="" selected disabled>Enter Gateway Name</option>
                                                               <option>VMT</option>
@@ -97,12 +137,12 @@
                                                                 <option>Promo with SID</option>
             
                                                             </select>
-                                                        </div>
+                                                        </div> -->
                                                  </form>
                                               </div>
                                               <div class="modal-footer">
                                                
-                                                <button type="submit" class="btn btn-primary" (click)="addGetwayConfigs()">Add</button>
+                                                <button type="button" class="btn btn-primary custom-margin-bottom-0" (click)="addGetwayConfigs()">Add</button>
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                               </div>
                                             </div>
@@ -114,9 +154,7 @@
                           <th>User Name</th>
                           <th>Gateways Type</th>
                           <th>Gateway Name</th>
-                          <!-- <th>Priority</th>
-                          <th>Route Type</th>
-                          <th>Weightage</th> -->
+                         
                           <th>Status</th>
                           <th>Operations</th>
                       </tr>
@@ -124,14 +162,15 @@
                   <tbody>
                    <tr *ngFor="let userrouter of userrouters">
                          <td *ngIf="userrouter.user != null">{{userrouter.user.name}}</td>
+                         <td *ngIf="userrouter.user == null">NULL</td>
                          <td *ngIf="userrouter.gateways_type != null">{{userrouter.gateways_type.name}}</td>
+                         <td *ngIf="userrouter.gateways_type == null">NULL</td>
                          <td *ngIf="userrouter.gateway != null">{{userrouter.gateway.name}}</td>
+                         <td *ngIf="userrouter.gateway == null">NULL</td>
                          <td *ngIf="userrouter.status == null">NULL </td>
                          <td *ngIf="userrouter.status == '1'">Unblocked </td>
                          <td *ngIf="userrouter.status == '0'">Blocked </td>
-                         <!-- <td>{{userrouter.Route}}</td>
-                         <td>{{rout?.Weightage}}</td>
-                         <td>{{rout?.Status}}</td> -->
+     
                          <td>
                               <a class="btn btn-success btn-sm"  ><i class="fa fa-pencil"></i> </a>
                               <span>&nbsp; &nbsp; </span>
