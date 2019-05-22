@@ -22,6 +22,9 @@ export class LoginComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+
+    localStorage.setItem('mini', "false");
+    
     this.loginForm = this.formBuilder.group({
       username:  ['', [Validators.required]],
       password: ['', Validators.required]

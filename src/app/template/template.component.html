@@ -13,14 +13,14 @@
               
                 <div class="row wrapper border-bottom white-bg page-heading">
                     <div class="col-lg-10">
-                        <h2>Templete</h2>
+                        <h2>Templates </h2>
                         <ol class="breadcrumb">
                             <!-- <li>
                                 <a href=" ">Dashboard</a>
                             </li> -->
                            
                             <li class="active">
-                                <strong>Templete</strong>
+                                <strong>Templates </strong>
                             </li>
                         </ol>
                     </div>
@@ -30,20 +30,20 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        <form class="form-inline">
+                        <form class="form-inline" style="padding-left: 23px;padding-top: 23px">
                                 <div class="form-group mx-sm-3 mb-2">
                                     <input type="password" class="form-control" id="inputPassword2" placeholder="Enter Username">
                                 </div>
                                 &nbsp;&nbsp;
-                                <button type="submit" class="btn btn-primary mb-2">Get Templete</button>
+                                <button type="submit" class="btn btn-primary mb-2">Get Template</button>
                         </form>
 
                 </div>
                 </div>
               <br/>
-                <div class="row">
+                <div class="row custom-padding-left-10" style="padding-left: 10px">
                    <div class="col-md-3">
-                        <p><a class="text-info" href="#"><b>Total Templete: &nbsp;3108</b></a></p>
+                        <p><a class="text-info" href="#"><b>Total Template: &nbsp;3108</b></a></p>
                     </div>
                     <div class="col-md-3">
                         <p><a class="text-info" href="#"><b>Total Pending: &nbsp;326</b></a></p>
@@ -68,24 +68,26 @@
                             <thead>
                                 <tr>
                                     <th>User Name</th>
-                                    <th>Is Reseller</th>
-                                    <th>Template Name</th>
-                                    <th>Template </th>
-                                    <th>Date&Time</th>
+                                    <th>Content </th>
+                                    <th>Variables </th>
+                                    <!-- <th>Template </th>
+                                    <th>Date&Time</th> -->
                                     <th>Status</th>
-                                    <th>Change Status</th>
+                                    <!-- <th>Change Status</th> -->
                                     <th>Operations</th>
                                 </tr>
                             </thead>
                             <tbody>
-                             <tr *ngFor="let group of data">
-                                   <td>{{group.username}}</td>
-                                   <td>{{group.Reseller}}</td>
-                                   <td>{{group.Sender}}</td>
-                                   <td>{{group.DateTime}}</td>
-                                   <td>{{group.Status}}</td>
-                                   <td>{{group.RouteType}}</td>
-                                   <td>{{group.ChangeStatus}}</td>
+                             <tr *ngFor="let template of templates">
+                                   <td *ngIf="template.user != null">{{template.user.name}}</td>
+                                   <td *ngIf="template.user == null">NULL </td>
+                                   <td>{{template.content}}</td>
+                                   <td>{{template.variables }}</td>
+                                   <!-- <td>{{group.DateTime}}</td> -->
+                                   <td *ngIf="template.status == '0' || template.status == null">Blocked </td>
+                                   <td *ngIf="template.status == '1'">Unblocked </td>
+                                   <!-- <td>{{group.RouteType}}</td>
+                                   <td>{{group.ChangeStatus}}</td> -->
                                    <td>
                                         <span>&nbsp; &nbsp;</span>
                                         <a  class="btn btn-danger btn-sm"  ><i class="fa fa-trash"></i></a>

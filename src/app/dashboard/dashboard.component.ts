@@ -10,6 +10,12 @@ import { AuthService } from '../services/auths/auth.service';
 export class DashboardComponent implements OnInit {
   currentUser: User;
   userType: any;
+  count = {
+    countTo: 100,
+    from: 0,
+    duration: 1
+};
+  mini: any;
   constructor(
     private router: Router,
     private auth: AuthService
@@ -19,6 +25,14 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+
+
+
+    this.mini = localStorage.getItem('mini');
+    if(this.mini == true){
+      $("#page-wrapper").attr('style', 'margin: 0px');
+    }
+    
     // (function()
     // {
     //  if( window.localStorage )

@@ -20,12 +20,18 @@ export class RoutingsComponent implements OnInit {
 
 ipAddress: any = "";
 port: any = "";
+selectedroute: any = "";
+gateways: any = "";
+selectedgateway: any = "";
+selecteduser: any = "";
 bindMode: any = "";
 route: any = "";
 gatewayname: any = "";
 
   dtOptions: DataTables.Settings = {};
-  userrouters: any = [""];
+ public userrouters: any = [""];
+  routestypes: any;
+  users: any;
   constructor() { }
 
   ngOnInit() {
@@ -37,6 +43,21 @@ gatewayname: any = "";
     }
 
     this.getuserrouter();
+    this.getroutesType();
+    this.getallusers();
+    this.getallgateways();
+  }
+
+  getallusers(){
+    var self = this;
+    axios.get(`http://103.214.233.141:3003/v1/secure/users/profiles/`)
+        .then(function (res) {
+          console.log(res);
+          self.users = res.data;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
   }
 
   getuserrouter(){
@@ -52,7 +73,45 @@ gatewayname: any = "";
   }
 
   addGetwayConfigs(){
+    var self = this;
+    axios.post(`http://103.214.233.141:3003/v1/secure/users/routers/`,{
+      "usersid" : self.selecteduser,
+      "gatewaystypesid": self.selectedroute,
+      "gatewaysid" : self.selectedgateway,
+      "status" : "1"
+    })
+        .then(function (res) {
+          console.log(res);
+          self.getuserrouter();
+          $("#close").click();
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+  }
 
+  getallgateways(){
+    var self = this;
+    axios.get('http://103.214.233.141:3003/v1/secure/gateways/profiles')
+        .then(function (res) {
+          
+          self.gateways = res.data;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+  }
+
+  getroutesType(){
+    var self = this;
+    axios.get('http://103.214.233.141:3003/v1/secure/gateways/types')
+        .then(function (res) {
+          
+          self.routestypes = res.data;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import axios from "axios";
 
 @Component({
   selector: 'app-senderid',
@@ -16,14 +17,29 @@ export class SenderidComponent implements OnInit {
 ];
 title = 'angulardatatables';
 dtOptions: DataTables.Settings = {};
+  senderids: any = [""];
   constructor() { }
 
   ngOnInit() {
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 5,
+      pageLength: 10,
       processing: true
     }
+
+    this.getallsenderids();
+  }
+
+  getallsenderids(){
+    var self = this;
+    axios.get(`http://103.214.233.141:3003/v1/secure/users/senderids/`)
+        .then(function (res) {
+          console.log(res);
+          self.senderids = res.data;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
   }
 
 }

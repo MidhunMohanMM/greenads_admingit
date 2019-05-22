@@ -21,6 +21,7 @@
     "@angular/router": "~7.1.0",
     "@syncfusion/ej2-angular-buttons": "^16.4.42",
     "angular-6-datatable": "^0.8.0",
+    "angular-count-to": "0.0.3",
     "angular-datatables": "^7.0.0",
     "angular2-multiselect-dropdown": "^4.2.1",
     "axios": "^0.18.0",

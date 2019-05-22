@@ -8,6 +8,7 @@ import {DataTablesModule} from 'angular-datatables';
 import { MyDatePickerModule } from 'mydatepicker';
 import { RadioButtonModule } from '@syncfusion/ej2-angular-buttons';
 import { enableRipple } from '@syncfusion/ej2-base';
+import { CountToModule } from 'angular-count-to';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 import { LoginComponent } from './login/login.component';
@@ -79,6 +80,7 @@ import { AuthGuard } from './guard/auth/auth.guard';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    CountToModule,
     ReactiveFormsModule,
     DataTablesModule,
     MyDatePickerModule,
