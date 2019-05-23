@@ -12,7 +12,11 @@ export class SendMessagesComponent implements OnInit {
     smsForm: FormGroup;
     radioStatus: any = false;
     routestypes: any;
-    routype: any;
+    routype: any = "";
+    users: any = "";
+    senderId: any = "";
+    savedSms: any = "";
+    model: any = "";
     public myDatePickerOptions: IMyDpOptions = {
         // other options...
         dateFormat: 'dd.mm.yyyy',
@@ -34,14 +38,7 @@ private formBuilder: FormBuilder,
     //     password: ['', Validators.required]
 
     //   });
-     axios.get('http://103.214.233.141:3003/v1/secure/routestypes')
-    .then( res => {
-        console.log(res);
-        this.routestypes = res.data;
-         })
-    .catch( err => {
-        console.log(err.data);
-    });
+this.getallroutetypes();
   }
   onItemSelect(item: any) {
     console.log(item.phone);
@@ -116,7 +113,7 @@ private formBuilder: FormBuilder,
             const self = this;
             const sms_data = {
              'usersid': '1',
-             'routestypesid': this.routype,
+             'gatewaystypesid': this.routype,
              'to': this.valide_number,
              'content': this.sms_content
             };
@@ -141,6 +138,17 @@ private formBuilder: FormBuilder,
             });
         }
 
+        }
+
+        getallroutetypes(){
+          axios.get('http://103.214.233.141:3003/v1/secure/gateways/types')
+          .then( res => {
+              console.log(res);
+              this.routestypes = res.data;
+               })
+          .catch( err => {
+              console.log(err.data);
+          });
         }
 
 

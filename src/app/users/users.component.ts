@@ -12,7 +12,7 @@ export class UsersComponent implements OnInit {
 
    userstypes:any ;
    users: any;
-   usertypesid:any ;
+   usertypesid:any = "" ;
    name: any; lastname: any; email: any; phone: any; password: any; transLimit: any;
    username: any;
   public TableDatas ;
@@ -65,9 +65,40 @@ this.userspermissionsid = users.userspermissionsid;
         });
        
   }
+
+generateUUID()
+{
+	var d = new Date().getTime();
+	
+	if( window.performance && typeof window.performance.now === "function" )
+	{
+		d += performance.now();
+	}
+	
+	var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c)
+	{
+		var r = (d + Math.random()*16)%16 | 0;
+		d = Math.floor(d/16);
+		return (c=='x' ? r : (r&0x3|0x8)).toString(16);
+	});
+
+return uuid;
+}
+
+/**
+ * Generate new key and insert into input value
+ */
+
+
+
   closeModal(){
-    console.log('hi');
-    location.reload();
+    // console.log('hi');
+    this._configs.getUsersData().then(rsp => {
+      this.TableDatas = rsp;
+      console.log(this.TableDatas);
+      this.load_data = true;
+  });
+    // location.reload();
     // $('#exampleModal').modal('hide');
   }
   AddNewUser() {
@@ -75,6 +106,22 @@ this.userspermissionsid = users.userspermissionsid;
     if (!this.name || !this.email || !this.phone || !this.username || !this.password) {
       console.log('ggg');
     } else {
+
+      var d = new Date().getTime();
+	
+      if( window.performance && typeof window.performance.now === "function" )
+      {
+        d += performance.now();
+      }
+      
+      var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c)
+      {
+        var r = (d + Math.random()*16)%16 | 0;
+        d = Math.floor(d/16);
+        return (c=='x' ? r : (r&0x3|0x8)).toString(16);
+      });
+
+      console.log(uuid)
       
       const data = {
           'userspermissionsid': this.usertypesid ,
@@ -83,6 +130,7 @@ this.userspermissionsid = users.userspermissionsid;
           'phone': this.phone,
           'username': this.username,
           'password': this.password,
+          'apikey' : uuid,
           'status': '1'
       };
       console.log(data);
@@ -90,6 +138,7 @@ this.userspermissionsid = users.userspermissionsid;
       .then( res => {
         console.log(res);
         this.closeModal();
+        $("#closemodal").click();
       })
       .catch( err => {
           console.log(err);

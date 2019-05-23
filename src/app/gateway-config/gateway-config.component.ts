@@ -17,6 +17,11 @@ export class GatewayConfigComponent implements OnInit {
   ipAddress: any; gatewayname: any; username: any; password: any; bindMode: any; sessions: any; port: any;
   defaultrouters: any = [""];
   dtOptions: DataTables.Settings = {};
+  routestypes: any;
+  gatewayprofiles: any;
+  selectedroute: any = "";
+  selectedgateway: any = "";
+
   constructor() { }
 
   ngOnInit(  ) {
@@ -47,6 +52,8 @@ export class GatewayConfigComponent implements OnInit {
   // });
 
   this.getdefaultrouters();
+  this.getroutesType();
+  this.getgatewayprofile();
   }
   // convenience getter for easy access to form fields
   // get f() { return this.gateConfigForm.controls; }
@@ -62,6 +69,48 @@ export class GatewayConfigComponent implements OnInit {
           console.log(error);
         });
   }
+
+  getroutesType(){
+    var self = this;
+    axios.get('http://103.214.233.141:3003/v1/secure/gateways/types')
+        .then(function (res) {
+          
+          self.routestypes = res.data;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+  }
+
+  getgatewayprofile(){
+    var self = this;
+    axios.get(`http://103.214.233.141:3003/v1/secure/gateways/profiles`)
+        .then(function (res) {
+          console.log(res);
+          self.gatewayprofiles = res.data;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+  }
+
+  adddefaultgateway(){
+    var self = this;
+    axios.post(`http://103.214.233.141:3003/v1/secure/default/routers/`,{
+      "gatewaystypesid": self.selectedroute,
+      "gatewaysid" : self.selectedgateway,
+      "status" : "1"
+    })
+        .then(function (res) {
+          console.log(res);
+          self.getdefaultrouters();
+          $("#closemodal").click();
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+  }
+
 
   onSubmit() {
 

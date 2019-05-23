@@ -40,7 +40,7 @@
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                     <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <button type="button" class="close" id="closemodal" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                         </button>
                                         <h5 class="modal-title" id="senderModalLabel">REGISTRATION</h5>  
@@ -54,7 +54,7 @@
                                                 <div class="form-group">
                                                     <label>User Type</label>
                                                     <select class="form-control" [(ngModel)]="usertypesid" name = "usertypesid" required>
-                                             
+                                                            <option value="" selected disabled >-select-</option>
                                                         <option *ngFor="let users of userstypes" value = "{{users.userspermissionsid}}">{{ users.name }}</option>
 
                                                     </select>
@@ -90,7 +90,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary" (click)=AddNewUser();>ADD</button>
+                                        <button type="button" class="btn btn-primary" (click)=AddNewUser();>Add</button>
                                     </div>
                                     </div>
                                 </div>
