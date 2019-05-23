@@ -10,4 +10,8 @@
 #maxlimit{
     color:red;
 }
+
+.multiselect-dropdown[_ngcontent-c4] {background: white!important;}
+
+
 /* @import 'https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'; */

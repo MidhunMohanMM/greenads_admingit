@@ -13,6 +13,7 @@ declare var $:any;
 export class SidenavComponent implements OnInit {
   currentUser: User;
   userType: any;
+  config:any;
   userData: any;
   mini: any;
   user: any; str: any;

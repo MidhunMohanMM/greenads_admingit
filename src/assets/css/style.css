@@ -8881,3 +8881,11 @@ body{
 ::-webkit-scrollbar-thumb:hover {
   background: #555; 
 }
+
+.multiselect-dropdown[_ngcontent-c4] {background: white!important;}
+
+.multiselect-dropdown[_ngcontent-c4] .dropdown-btn[_ngcontent-c4] {border-radius: 0px!important;border:1 px solid #ffffff!important;}
+
+.custom-margin-bottom-0{
+  margin-bottom: 0px;
+}

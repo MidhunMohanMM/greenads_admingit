@@ -42,6 +42,13 @@ import { UserFileLinkComponent } from './user-file-link/user-file-link.component
 import { GatewayconfigservicesService } from './gatewayconfigservices.service';
 import { AuthService } from './services/auths/auth.service';
 import { AuthGuard } from './guard/auth/auth.guard';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+ 
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true
+};
 
 
 @NgModule({
@@ -85,9 +92,14 @@ import { AuthGuard } from './guard/auth/auth.guard';
     DataTablesModule,
     MyDatePickerModule,
     RadioButtonModule,
+    PerfectScrollbarModule,
     NgMultiSelectDropDownModule.forRoot()
   ],
   providers: [
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+    },
     GatewayconfigservicesService,
     AuthService,
     AuthGuard
