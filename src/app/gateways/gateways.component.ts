@@ -31,6 +31,10 @@ username: any = "";
 password: any = "";
 passwordconfirm: any = "";
   routestypes: any;
+  gatewaysid: any;
+  cid: any;
+  bind: any;
+  systype: any;
 
   constructor() {
 
@@ -50,7 +54,66 @@ passwordconfirm: any = "";
 
 
   }
+
+  getgatewaybyID(gatewayID){
+    var self = this;
+    axios.get(`http://103.214.233.141:3003/v1/secure/gateways/profiles/${gatewayID}`)
+        .then(function (res) {
+          self.gatewaysid = res.data.gatewaysid;
+          self.gatewayname = res.data.name;
+          self.bindMode = res.data.gatewaystypesid;
+          self.host = res.data.host;
+          self.port = res.data.port;
+          self.username = res.data.username;
+          self.cid = res.data.cid;
+          self.bind = res.data.bind;
+          self.systype = res.data.systype;
+          
+          // self.routestypes = res.data;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+  }
   
+  editGetwayConfigs(){
+    var self = this;
+    axios.put(`http://103.214.233.141:3003/v1/secure/gateways/profiles/${self.gatewaysid}`,{
+          "name": self.gatewayname,
+          "host" : self.host,
+          "port": self.port,
+          "username": self.username,
+          "password" : self.password,
+          "bind" : self.bind,
+          "cid" : self.cid,
+          "systype" : self.systype,
+          "gatewaystypesid": self.bindMode   
+      })
+        .then(function (res) {
+          $("#gatewaymodaledit").click();
+          self.getgatewayprofile();
+          // window.location.reload();
+          // self.routestypes = res.data;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+  }
+
+  deletegatewaybyID(gatewayID){
+    var self = this;
+    axios.put(`http://103.214.233.141:3003/v1/secure/gateways/profiles/${gatewayID}`,{
+            "status" : "0"
+      })
+        .then(function (res) {
+          self.getgatewayprofile();
+          // window.location.reload();
+          // self.routestypes = res.data;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+  }
 
 
   addGetwayConfigs(){
@@ -111,7 +174,7 @@ passwordconfirm: any = "";
 
   getgatewayprofile(){
     var self = this;
-    axios.get(`http://103.214.233.141:3003/v1/secure/gateways/profiles`)
+    axios.get(`http://103.214.233.141:3003/v1/secure/gateways/profiles?gateways[status]=1`)
         .then(function (res) {
           console.log(res);
           self.gatewayprofiles = res.data;

@@ -22,6 +22,7 @@ ipAddress: any = "";
 port: any = "";
 selectedroute: any = "";
 gateways: any = "";
+selectedstatus: any = ""; 
 selectedgateway: any = "";
 selecteduser: any = "";
 bindMode: any = "";
@@ -32,6 +33,9 @@ gatewayname: any = "";
  public userrouters: any = [""];
   routestypes: any;
   users: any;
+  selecteduseredit: any;
+  selectedgatewayedit: any;
+  selectedrouteedit: any;
   constructor() { }
 
   ngOnInit() {
@@ -60,12 +64,46 @@ gatewayname: any = "";
         });
   }
 
+  getuserroutersbyID(userrouterID, userID, routeID, gatewayID, status){
+    var self = this;
+    axios.get(`http://103.214.233.141:3003/v1/secure/users/routers/${userrouterID}`)
+        .then(function (res) {
+          console.log(res);
+          self.selecteduseredit = res.data.usersid;
+          self.selectedstatus = res.data.status;
+          self.selectedgatewayedit = res.data.gatewaysid;
+          self.selectedrouteedit = res.data.gatewaystypesid;
+          console.log(self.selecteduseredit)
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+  }
+
   getuserrouter(){
     var self = this;
     axios.get(`http://103.214.233.141:3003/v1/secure/users/routers/`)
         .then(function (res) {
           console.log(res);
           self.userrouters = res.data;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+  }
+
+  edituserrouters(){
+    var self = this;
+    axios.put(`http://103.214.233.141:3003/v1/secure/users/routers/`,{
+      "usersid" : self.selecteduser,
+      "gatewaystypesid": self.selectedroute,
+      "gatewaysid" : self.selectedgateway,
+      "status" : "1"
+    })
+        .then(function (res) {
+          console.log(res);
+          self.getuserrouter();
+          $("#editclose").click();
         })
         .catch(function (error) {
           console.log(error);

@@ -21,6 +21,8 @@ export class GatewayConfigComponent implements OnInit {
   gatewayprofiles: any;
   selectedroute: any = "";
   selectedgateway: any = "";
+  selectedstatus: any;
+  defaultroutersid: any;
 
   constructor() { }
 
@@ -58,9 +60,26 @@ export class GatewayConfigComponent implements OnInit {
   // convenience getter for easy access to form fields
   // get f() { return this.gateConfigForm.controls; }
 
+  getdefaultroutersbyID(defaultrouterID){
+    var self = this;
+    axios.get(`http://103.214.233.141:3003/v1/secure/default/routers/${defaultrouterID}`)
+        .then(function (res) {
+          console.log(res);
+          self.selectedroute = res.data.gatewaystypesid;
+          self.selectedgateway = res.data.gatewaysid;
+          self.selectedstatus =  res.data.status;
+          self.defaultroutersid = res.data.defaultroutersid;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+  }
+
+
+
   getdefaultrouters(){
     var self = this;
-    axios.get(`http://103.214.233.141:3003/v1/secure/default/routers`)
+    axios.get(`http://103.214.233.141:3003/v1/secure/default/routers?defaultrouters[status]=1`)
         .then(function (res) {
           console.log(res);
           self.defaultrouters = res.data;
@@ -111,6 +130,38 @@ export class GatewayConfigComponent implements OnInit {
         });
   }
 
+  editdefaultgateway(){
+    var self = this;
+    axios.put(`http://103.214.233.141:3003/v1/secure/default/routers/${self.defaultroutersid}`,{
+      "gatewaystypesid": self.selectedroute,
+      "gatewaysid" : self.selectedgateway,
+      "status" : self.selectedstatus
+    })
+        .then(function (res) {
+          console.log(res);
+          $("#editclosemodal").click();
+          self.getdefaultrouters();
+      
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+  }
+
+  deletedefaultrouter(routerID){
+    var self = this;
+    axios.put(`http://103.214.233.141:3003/v1/secure/default/routers/${routerID}`,{
+      "status" : "0"
+    })
+        .then(function (res) {
+          console.log(res);
+          self.getdefaultrouters();
+      
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+  }
 
   onSubmit() {
 

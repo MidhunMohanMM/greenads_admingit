@@ -11,7 +11,7 @@
                   <a data-toggle="dropdown" class="dropdown-toggle" href=" ">
                   <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold" id="userName">Super Admin</strong>
                    </span> <span class="text-muted text-xs block" id="userName1">Super Admin <b class="caret"></b></span> </span> </a>
-                  <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                  <ul class="dropdown-menu animated fadeInDown m-t-xs">
                       <li><a >Profile</a></li>
                       <li><a >Contacts</a></li>
                       <li><a >Mailbox</a></li>
@@ -40,11 +40,11 @@
           <li  id="opendropdownUser">
               <a class="sideNavLink" ><i class="fa fa-users"></i> <span class="nav-label">USERS</span><span class="fa arrow"></span></a>
               <ul class="nav nav-second-level collapse" id="opendropdownUlUser">
-                  <li id="userbydate"><a (click)="userbydate()">USERS BY DATES</a></li>
+                  <!-- <li id="userbydate"><a (click)="userbydate()">USERS BY DATES</a></li> -->
                   <li id="users"><a (click)="users()">USERS</a></li>
                   <li id="usergateways"><a (click)="usergateways()">USER GATEWAYS</a></li>
-                  <li id="changeusergateways"><a (click)="changeusersgateways()">CHANGE USERS GATEWAYS</a></li>
-                  <li id="lowusers"><a (click)="lowusers()">LOW USERS</a></li>
+                  <!-- <li id="changeusergateways"><a (click)="changeusersgateways()">CHANGE USERS GATEWAYS</a></li>
+                  <li id="lowusers"><a (click)="lowusers()">LOW USERS</a></li> -->
                   <li id="reseller"><a (click)="reseller()">RESELLER</a></li>
 
          
@@ -54,7 +54,7 @@
               <a class="sideNavLink" ><i class="fa fa-rupee"></i> <span class="nav-label">PAYMENTS</span><span class="fa arrow"></span></a>
               <ul class="nav nav-second-level collapse" id="opendropdownUlPayment">
                   <li id="payment"><a (click)="payment()">PAYMENT</a></li>
-                  <li id="totalpayment"><a (click)="totalpayment()">TOTAL PAYMENT</a></li>
+                  <li id="totalpayment"><a (click)="totalpayment()">TRANSACTIONS</a></li>
               </ul>
           </li>
   
@@ -67,10 +67,10 @@
               </ul>
           </li>
           <li id="templates">
-              <a (click)="template();" class="sideNavLink" ><i class="fa fa-file-text-o"></i> <span class="nav-label">TEMPLATES</span></a>
+              <a (click)="template()" class="sideNavLink" ><i class="fa fa-file-text-o"></i> <span class="nav-label">TEMPLATES</span></a>
           </li>
           <li id="blocknumbers">
-              <a class="sideNavLink" (click)="blocknumbers();"><i class="fa fa-edit"></i> <span class="nav-label">BLOCK NUMBERS</span></a>
+              <a class="sideNavLink" (click)="blocknumbers()"><i class="fa fa-edit"></i> <span class="nav-label">BLOCK NUMBERS</span></a>
           </li>
           <li id="opendropdownLog">
           <a class="sideNavLink" ><i class="fa fa-laptop"></i> <span class="nav-label">LOG DETAILS</span><span class="fa arrow"></span></a>

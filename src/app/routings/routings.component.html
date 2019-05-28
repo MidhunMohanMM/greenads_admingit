@@ -29,7 +29,7 @@
   
                   </div>
               </div>
-              <div class="wrapper wrapper-content animated fadeInRight">
+              <div class="wrapper wrapper-content animated fadeInDown">
               <div class="row">
                   <div class="col-lg-12">
                   <div class="ibox float-e-margins">
@@ -156,7 +156,7 @@
                           <th>Gateway Name</th>
                          
                           <th>Status</th>
-                          <th>Operations</th>
+                          <th style="width:10%">Operations</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -172,7 +172,7 @@
                          <td *ngIf="userrouter.status == '0'">Blocked </td>
      
                          <td>
-                              <a class="btn btn-success btn-sm"  ><i class="fa fa-pencil"></i> </a>
+                              <a class="btn btn-primary btn-sm"  data-toggle="modal" data-target="#EditUserRouters"  (click)="getuserroutersbyID(userrouter.usersroutersid,userrouter.usersid,userrouter.gatewaystypesid,userrouter.gatewaysid,userrouter.status)" ><i class="fa fa-pencil"></i> </a>
                               <span>&nbsp; &nbsp; </span>
                               <a  class="btn btn-danger btn-sm"  ><i class="fa fa-trash"></i></a>
                          </td>
@@ -567,3 +567,74 @@
   </div>
 </div>
 <!-- </div> -->
+
+<div class="modal fade" id="EditUserRouters" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+              <button type="button" class="close" id="editclose" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+              </button>
+          <h5 class="modal-title" id="CONFIGModalLabel">EDIT USER ROUTERS</h5>
+          
+        </div>
+        <div class="modal-body">
+            <form  name="gateConfigForm" >
+
+                  <div class="form-group">       
+                          <select class="form-control" placeholder="Select Route" [(ngModel)]="selecteduseredit"  name="selectedroute" id="exampleFormControlSelect1">
+                              <option id="option_select"  selected disabled>Select User</option>
+
+                              <option *ngFor="let user of users" 
+                              [value]="user.usersid">
+                            {{user.name | titlecase }}
+                          </option>   
+
+                          </select>
+                      </div>
+
+                  <div class="form-group">       
+                          <select class="form-control" placeholder="Select Route" [(ngModel)]="selectedrouteedit"  name="selectedroute" id="exampleFormControlSelect1">
+                              <option id="option_select"  selected disabled>Select Route</option>
+
+                              <option *ngFor="let routestype of routestypes" 
+                              [value]="routestype.gatewaystypesid">
+                            {{routestype.name | titlecase }}
+                          </option>   
+
+                          </select>
+                      </div>
+
+                      <div class="form-group">       
+                              <select class="form-control" placeholder="Select Gateway" [(ngModel)]="selectedgatewayedit"  name="selectedgateway" id="exampleFormControlSelect1">
+                                  <option id="option_select"  selected disabled>Select Gateway</option>
+
+                                  <option *ngFor="let gateway of gateways" 
+                                  [value]="gateway.gatewaysid">
+                                {{gateway.name | titlecase }}
+                              </option>   
+
+                              </select>
+                          </div>
+
+                          <div class="form-group">       
+                            <select class="form-control" placeholder="Select Status" [(ngModel)]="selectedstatus"  name="selectedgateway" id="exampleFormControlSelect1">
+                                <option id="option_select" value="" selected disabled>Select status</option>
+
+                                <option value="1">Unblocked</option>   
+                                <option value="0">Blocked</option>   
+
+                            </select>
+                        </div>
+
+
+           </form>
+        </div>
+        <div class="modal-footer">
+         
+          <button type="button" style="margin-bottom: 0px;" class="btn btn-primary custom-margin-bottom-0" (click)="edituserrouters()">Edit</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

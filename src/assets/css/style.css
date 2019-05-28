@@ -8889,3 +8889,9 @@ body{
 .custom-margin-bottom-0{
   margin-bottom: 0px;
 }
+
+th, tr,td{
+  vertical-align: middle!important;
+  /* align-items: center; */
+  text-align: center;
+}
