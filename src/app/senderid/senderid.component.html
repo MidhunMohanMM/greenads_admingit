@@ -36,24 +36,30 @@
                                 </div>
                                 &nbsp;&nbsp;
                                 <button type="submit" class="btn btn-primary mb-2">Get SenderID</button>
+                                <button class="button button1" style="float:right;margin-right: 20px;" class="btn btn-primary"  data-toggle="modal" data-target="#exampleModal"> <i class="fa fa-plus" aria-hidden="true"></i >&nbsp;Add</button>
+                
                         </form>
 
                 </div>
+                       
                 </div>
                 <div class="row" style="padding-left: 10px">
                    <div class="col-lg-12">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="addBtn">
+                        <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" id="addBtn">
                                 ADD
-                        </button>
+                        </button> -->
+                           
+
+
                          <!-- Modal -->
                          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                 <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <button type="button" class="close" id="closeaddmodal" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                     </button>
-                                    <h5 class="modal-title" id="senderModalLabel">ADD SENDER</h5>  
+                                    <h5 class="modal-title" id="senderModalLabel">ADD SENDERID</h5>  
                                 </div>
                                 <div class="modal-body">
                                     <div class="row">
@@ -61,22 +67,48 @@
                                         <form role="form">
                                             <div class="form-group">
                                                 <label>Enter Username</label> 
-                                                <input type="text" placeholder="User Name" class="form-control" autocomplete="off" required>
+                                                <input type="text" placeholder="Enter SenderID User Name" name="username" [(ngModel)]="username" class="form-control" autocomplete="off" required>
                                             </div>
-                                            <div class="form-group">
+                                            <!-- <div class="form-group">
                                                 <label>Route Type</label>
-                                                <select class="form-control" id="exampleFormControlSelect1" required>
+                                                <select class="form-control" [(ngModel)]="selectedroute" id="exampleFormControlSelect1" required>
                                                     <option value="" selected disabled >-select-</option>
                                                     <option>Promotional</option>
                                                     <option>Transactional</option>
                                                     <option>Promo with SId</option>
                                                 
                                                 </select>
+                                            </div> -->
+
+                                            <div class="form-group">       
+                                                <select class="form-control" placeholder="Select Route" [(ngModel)]="selectedroute"  name="bindMode" id="exampleFormControlSelect1">
+                                                    <option id="option_select" value="" selected disabled>Select Route</option>
+    
+                                                    <option *ngFor="let routestype of routestypes" 
+                                                    [value]="routestype.gatewaystypesid">
+                                                  {{routestype.name | titlecase }}
+                                                </option>   
+
+                                                </select>
                                             </div>
-                                            <div class="form-group">
+
+                                            <div class="form-group">       
+                                                <select class="form-control" placeholder="Select User" [(ngModel)]="selecteduser"  name="bindMode" id="exampleFormControlSelect1">
+                                                    <option id="option_select" value="" selected disabled>Select Users</option>
+    
+                                                    <option *ngFor="let user of users" 
+                                                    [value]="user.usersid">
+                                                  {{user.name | titlecase }}
+                                                </option>   
+
+                                                </select>
+                                            </div>
+
+
+                                            <!-- <div class="form-group">
                                                 <label>Enter SenderID</label> 
                                                 <input type="text" placeholder="Sender Ids" minlength="6" maxlength="6" required class="form-control">
-                                            </div> 
+                                            </div>  -->
                                         </form>
                                     </div>
                                             
@@ -84,28 +116,28 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">ADD</button>
+                                    <button type="button" (click)="addsenderID()" class="btn btn-primary">Add </button>
                                 </div>
                                 </div>
                             </div>
                       </div>
                    </div>
                 </div>
-                <div class="row" style="padding-left: 10px">
+                <div class="row mt-5" style="padding-left: 10px;margin-top: 16px">
                    <div class="col-md-3">
-                        <p><a class="text-info" href="#"><b>Total SenderIDs: 3108</b></a></p>
+                        <p><a style="color: #797b7d;" href="#"><b>Total SenderIDs:{{ totalsenderids }}</b></a></p>
                     </div>
                     <div class="col-md-3">
-                        <p><a class="text-info" href="#"><b>Total Pending: 326</b></a></p>
+                        <p><a style="color: #797b7d;" href="#"><b>Total Pending: {{ totalsenderids }}</b></a></p>
                     </div>
                     <div class="col-md-3">
-                        <p><a class="text-info" href="#"><b>Total Approved: 2775</b></a></p>
+                        <p><a style="color: #797b7d;" href="#"><b>Total Approved: 0</b></a></p>
                     </div>
                     <div class="col-md-3">
-                        <p><a class="text-info" href="#"><b>Total Rejected: 7</b></a></p>
+                        <p><a style="color: #797b7d;" href="#"><b>Total Rejected: 0</b></a></p>
                     </div>
                 </div>    
-                <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="wrapper wrapper-content animated fadeInDown">
                 <div class="row">
                      <div class="col-lg-12">
                        
@@ -124,7 +156,7 @@
                                     <th>Status</th>
                                    
                                     <!-- <th>Change Status</th> -->
-                                    <th>Actions</th>
+                                    <th width="10%">Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -137,13 +169,18 @@
                                    <!-- <td>{{group.Reseller}}</td>
                                    <td>{{group.Sender}}</td> -->
                                    <td>{{senderid.updatedAt}}</td>
-                                   <td *ngIf="senderid.status == '0' || senderid.status == null">Blocked</td>
-                                   <td *ngIf="senderid.status == '1'" >Unblocked</td>
+                                   <td *ngIf="senderid.status == '0' || senderid.status == null">Disabled </td>
+                                   <td *ngIf="senderid.status == '1'" >New</td>
+                                   <td *ngIf="senderid.status == '2'" >Processing</td>
+                                   <td *ngIf="senderid.status == '3'" >Completed</td>
+                                   <td *ngIf="senderid.status == '4'" >Failed</td>
+                                   <td *ngIf="senderid.status == '5'" >Rejected</td>
                                    <!-- <td>{{group.ChangeStatus}}</td> -->
                                    <td>
-                                        <span>&nbsp; &nbsp;</span>
-                                        <a href=" " class="btn btn-danger btn-sm"  ><i class="fa fa-trash"></i></a>
-                                   </td>
+                                    <a (click)="getsenderidbyID(senderid.userssenderidsid)" style="    margin-left: 10px;" data-toggle="modal" data-target="#EditGateway"  class="btn btn-primary btn-sm"  ><i class="fa fa-pencil"></i> </a>
+                                    <span>&nbsp; &nbsp;</span>
+                                    <!-- <a (click)="deletesenderidbyID(senderid.userssenderidsid)" class="btn btn-danger btn-sm"  ><i class="fa fa-trash"></i></a> -->
+                              </td>
                                </tr>
                             </tbody>
                         </table>
