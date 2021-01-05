@@ -24,7 +24,7 @@
     "angular-count-to": "0.0.3",
     "angular-datatables": "^7.0.0",
     "angular2-multiselect-dropdown": "^4.2.1",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "bootstrap": "^4.2.1",
     "core-js": "^2.5.4",
     "datatables.net": "^1.10.19",
